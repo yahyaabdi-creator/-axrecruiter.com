@@ -1,0 +1,603 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --off-white: #f8f8f6;
+  --mid-grey: #888888;
+  --border: #e0e0e0;
+  --display: 'Cormorant Garamond', serif;
+  --body: 'Montserrat', sans-serif;
+}
+
+.ax * { margin:0; padding:0; box-sizing:border-box; }
+.ax { font-family: var(--body); color: var(--black); font-size:15px; line-height:1.7; overflow-x:hidden; }
+
+/* NAV */
+.ax-nav {
+  position:fixed; top:0; left:0; right:0; z-index:9999;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 60px; height:72px;
+  background:rgba(255,255,255,0.97);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(8px);
+}
+.ax-nav-logo {
+  font-family:var(--display); font-size:22px; font-weight:600;
+  letter-spacing:0.08em; color:var(--black); text-decoration:none;
+}
+.ax-nav-links { display:flex; gap:36px; list-style:none; }
+.ax-nav-links a {
+  text-decoration:none; font-family:var(--body); font-size:11px;
+  font-weight:500; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--black); padding-bottom:2px;
+  border-bottom:1px solid transparent; transition:border-color 0.25s;
+}
+.ax-nav-links a:hover { border-bottom-color:var(--black); }
+.ax-nav-cta {
+  background:var(--black) !important; color:#fff !important;
+  padding:10px 22px !important; border-bottom:none !important;
+}
+.ax-nav-cta:hover { background:#333 !important; }
+
+/* HERO */
+.ax-hero {
+  margin-top:72px; min-height:calc(100vh - 72px);
+  position:relative; display:flex; align-items:center;
+  overflow:hidden; background:var(--black);
+}
+.ax-hero-bg {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.88) 42%, rgba(0,0,0,0.25) 100%),
+    url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80');
+  background-size:cover; background-position:center;
+  transform:scale(1.04); animation:axZoom 12s ease-out forwards;
+}
+@keyframes axZoom { from{transform:scale(1.04)} to{transform:scale(1)} }
+.ax-hero-content {
+  position:relative; z-index:2; padding:0 80px; max-width:780px;
+  animation:axUp 1.2s ease both;
+}
+@keyframes axUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+.ax-eyebrow {
+  font-size:10px; font-weight:500; letter-spacing:0.25em;
+  text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:20px;
+}
+.ax-hero-title {
+  font-family:var(--display); font-size:clamp(50px,7vw,90px);
+  font-weight:300; line-height:1.05; color:#fff; margin-bottom:26px;
+}
+.ax-hero-title em { font-style:italic; font-weight:300; }
+.ax-hero-sub {
+  font-size:13px; font-weight:300; color:rgba(255,255,255,0.68);
+  letter-spacing:0.04em; max-width:460px; margin-bottom:44px; line-height:1.9;
+}
+.ax-hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+.ax-btn-w {
+  display:inline-block; padding:14px 34px; background:#fff; color:#000;
+  text-decoration:none; font-size:10px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase; transition:opacity 0.2s;
+}
+.ax-btn-w:hover { opacity:0.85; }
+.ax-btn-ol {
+  display:inline-block; padding:13px 34px;
+  border:1px solid rgba(255,255,255,0.45); color:#fff;
+  text-decoration:none; font-size:10px; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase;
+  transition:border-color 0.25s, background 0.25s;
+}
+.ax-btn-ol:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
+.ax-scroll {
+  position:absolute; bottom:40px; left:80px;
+  display:flex; align-items:center; gap:12px;
+  color:rgba(255,255,255,0.38); font-size:9px;
+  letter-spacing:0.2em; text-transform:uppercase;
+}
+.ax-scroll::before { content:''; width:40px; height:1px; background:rgba(255,255,255,0.28); }
+
+/* SECTIONS */
+.ax-sec { padding:100px 80px; }
+.ax-label {
+  font-size:9px; font-weight:600; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--mid-grey);
+  margin-bottom:14px; display:block;
+}
+.ax-title {
+  font-family:var(--display); font-size:clamp(36px,4.5vw,58px);
+  font-weight:400; line-height:1.1; color:var(--black); margin-bottom:18px;
+}
+.ax-title em { font-style:italic; font-weight:300; }
+.ax-intro {
+  font-size:13px; font-weight:300; color:#555;
+  max-width:520px; line-height:1.9; margin-bottom:56px;
+}
+.ax-line { width:40px; height:1px; background:var(--black); margin:26px 0; }
+
+/* ABOUT */
+.ax-about {
+  background:var(--off-white); display:grid;
+  grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+.ax-stats { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:46px; }
+.ax-stat { background:#fff; padding:30px 26px; border:1px solid var(--border); }
+.ax-stat-n {
+  font-family:var(--display); font-size:46px; font-weight:300;
+  line-height:1; color:var(--black); margin-bottom:5px;
+}
+.ax-stat-l { font-size:10px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid-grey); }
+.ax-about-img img {
+  width:100%; height:560px; object-fit:cover;
+  filter:grayscale(100%); display:block;
+}
+
+/* JOBS */
+.ax-jobs { background:#fff; }
+.ax-jobs-hdr {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:46px; flex-wrap:wrap; gap:20px;
+}
+.ax-filters { display:flex; gap:8px; flex-wrap:wrap; }
+.ax-fbtn {
+  padding:8px 18px; border:1px solid var(--border); background:transparent;
+  font-family:var(--body); font-size:10px; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase;
+  cursor:pointer; color:var(--mid-grey); transition:all 0.2s;
+}
+.ax-fbtn:hover, .ax-fbtn.on { background:var(--black); color:#fff; border-color:var(--black); }
+.ax-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:1px; background:var(--border); border:1px solid var(--border);
+}
+.ax-card {
+  background:#fff; padding:36px 32px; transition:background 0.2s;
+  cursor:pointer; display:flex; flex-direction:column; gap:14px;
+}
+.ax-card:hover { background:var(--off-white); }
+.ax-card-img {
+  width:calc(100% + 64px); height:180px; object-fit:cover;
+  filter:grayscale(100%); display:block;
+  margin:-36px -32px 20px -32px; transition:filter 0.4s;
+}
+.ax-card:hover .ax-card-img { filter:grayscale(25%); }
+.ax-tag {
+  display:inline-block; font-size:9px; font-weight:600;
+  letter-spacing:0.15em; text-transform:uppercase;
+  padding:4px 10px; border:1px solid var(--border);
+  color:var(--mid-grey); width:fit-content;
+}
+.ax-tag.p { border-color:var(--black); color:var(--black); }
+.ax-card-title {
+  font-family:var(--display); font-size:24px;
+  font-weight:500; line-height:1.2; color:var(--black);
+}
+.ax-meta { display:flex; flex-direction:column; gap:5px; }
+.ax-meta span { font-size:11px; color:var(--mid-grey); letter-spacing:0.04em; }
+.ax-meta span strong { color:var(--black); font-weight:500; }
+.ax-salary {
+  font-family:var(--display); font-size:20px;
+  font-weight:400; color:var(--black); margin-top:auto;
+}
+.ax-apply {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:10px; font-weight:600; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--black); text-decoration:none;
+  border-bottom:1px solid var(--black); padding-bottom:2px;
+  width:fit-content; margin-top:8px;
+}
+
+/* SPLIT PANEL */
+.ax-split {
+  display:grid; grid-template-columns:1fr 1fr; min-height:480px;
+}
+.ax-panel {
+  padding:80px; display:flex; flex-direction:column; justify-content:center;
+}
+.ax-panel.dk { background:var(--black); color:#fff; }
+.ax-panel.lt { background:var(--off-white); color:var(--black); }
+.ax-panel .ax-title { color:inherit; margin-bottom:14px; }
+.ax-panel p {
+  font-size:13px; font-weight:300; line-height:1.9;
+  opacity:0.7; max-width:400px; margin-bottom:34px;
+}
+.ax-btn-blk {
+  display:inline-block; padding:14px 34px; background:var(--black);
+  color:#fff; text-decoration:none; font-size:10px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase; width:fit-content;
+  transition:opacity 0.2s; border:none; cursor:pointer; font-family:var(--body);
+}
+.ax-btn-blk:hover { opacity:0.8; }
+.ax-btn-wht {
+  display:inline-block; padding:14px 34px; background:#fff;
+  color:#000; text-decoration:none; font-size:10px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase; width:fit-content;
+  transition:opacity 0.2s; border:none; cursor:pointer; font-family:var(--body);
+}
+.ax-btn-wht:hover { opacity:0.85; }
+
+/* FORM */
+.ax-form-sec { background:var(--off-white); }
+.ax-form {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:16px; max-width:720px;
+}
+.ax-form .full { grid-column:1/-1; }
+.ax-fg { display:flex; flex-direction:column; gap:7px; }
+.ax-fg label {
+  font-size:9px; font-weight:600; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--mid-grey);
+}
+.ax-fg input, .ax-fg select, .ax-fg textarea {
+  border:1px solid var(--border); background:#fff;
+  padding:12px 14px; font-family:var(--body); font-size:13px;
+  font-weight:300; color:var(--black); outline:none; transition:border-color 0.2s;
+}
+.ax-fg input:focus, .ax-fg select:focus, .ax-fg textarea:focus { border-color:var(--black); }
+.ax-fg textarea { resize:vertical; min-height:120px; }
+
+/* CONTACT */
+.ax-contact-sec {
+  background:var(--black); color:#fff; display:grid;
+  grid-template-columns:1fr 1fr; gap:80px; align-items:start;
+}
+.ax-contact-sec .ax-label { color:rgba(255,255,255,0.35); }
+.ax-contact-sec .ax-title { color:#fff; }
+.ax-contact-sec .ax-intro { color:rgba(255,255,255,0.52); }
+.ax-ci {
+  display:flex; flex-direction:column; gap:4px;
+  padding:22px 0; border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.ax-ci:first-child { border-top:1px solid rgba(255,255,255,0.1); }
+.ax-ci-lbl {
+  font-size:9px; font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase; color:rgba(255,255,255,0.33);
+}
+.ax-ci-val {
+  font-family:var(--display); font-size:20px; font-weight:300; color:#fff;
+}
+.ax-ci-val a {
+  color:inherit; text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.2); transition:border-color 0.2s;
+}
+.ax-ci-val a:hover { border-bottom-color:#fff; }
+.ax-cf input, .ax-cf textarea {
+  width:100%; border:none; border-bottom:1px solid rgba(255,255,255,0.2);
+  background:transparent; padding:14px 0; font-family:var(--body);
+  font-size:13px; font-weight:300; color:#fff; outline:none;
+  margin-bottom:20px; transition:border-color 0.2s; display:block;
+}
+.ax-cf input::placeholder, .ax-cf textarea::placeholder { color:rgba(255,255,255,0.3); }
+.ax-cf input:focus, .ax-cf textarea:focus { border-bottom-color:#fff; }
+.ax-cf textarea { min-height:110px; resize:none; }
+.ax-cf-hdr {
+  font-size:11px; font-weight:500; letter-spacing:0.18em;
+  text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:28px;
+}
+
+/* FOOTER */
+.ax-footer {
+  background:var(--off-white); padding:46px 80px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid var(--border); flex-wrap:wrap; gap:20px;
+}
+.ax-footer-brand {
+  font-family:var(--display); font-size:20px; font-weight:600;
+  letter-spacing:0.1em; color:var(--black);
+}
+.ax-footer-legal { font-size:10px; color:var(--mid-grey); letter-spacing:0.04em; text-align:center; line-height:1.8; }
+.ax-footer-links { display:flex; gap:28px; }
+.ax-footer-links a {
+  font-size:10px; font-weight:500; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--mid-grey);
+  text-decoration:none; transition:color 0.2s;
+}
+.ax-footer-links a:hover { color:var(--black); }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .ax-nav { padding:0 24px; }
+  .ax-nav-links { display:none; }
+  .ax-sec { padding:70px 24px; }
+  .ax-about, .ax-contact-sec { grid-template-columns:1fr; gap:40px; }
+  .ax-split { grid-template-columns:1fr; }
+  .ax-panel { padding:60px 24px; }
+  .ax-form { grid-template-columns:1fr; }
+  .ax-hero-content { padding:0 24px; }
+  .ax-scroll { left:24px; }
+  .ax-footer { flex-direction:column; align-items:flex-start; padding:40px 24px; }
+}
+</style>
+
+<div class="ax">
+
+<!-- NAV -->
+<nav class="ax-nav">
+  <a href="#ax-home" class="ax-nav-logo">AX RECRUITMENT</a>
+  <ul class="ax-nav-links">
+    <li><a href="#ax-home">Home</a></li>
+    <li><a href="#ax-jobs">Jobs</a></li>
+    <li><a href="#ax-register">Looking for Staff?</a></li>
+    <li><a href="#ax-candidate">Register</a></li>
+    <li><a href="#ax-about">About Us</a></li>
+    <li><a href="#ax-contact" class="ax-nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="ax-home" class="ax-hero">
+  <div class="ax-hero-bg"></div>
+  <div class="ax-hero-content">
+    <p class="ax-eyebrow">Engineering · Construction · Manufacturing</p>
+    <h1 class="ax-hero-title">Placing <em>talent</em><br>where it<br>matters most.</h1>
+    <p class="ax-hero-sub">AX Recruiter Ltd connects skilled professionals with the companies that need them. Specialist recruitment across engineering, construction and manufacturing — built on honesty, speed and expertise.</p>
+    <div class="ax-hero-btns">
+      <a href="#ax-jobs" class="ax-btn-w">Browse Live Jobs</a>
+      <a href="#ax-candidate" class="ax-btn-ol">Submit Your CV</a>
+    </div>
+  </div>
+  <div class="ax-scroll">Scroll to explore</div>
+</section>
+
+<!-- ABOUT -->
+<section id="ax-about" class="ax-about ax-sec">
+  <div>
+    <span class="ax-label">Who We Are</span>
+    <h2 class="ax-title">We don't just fill<br><em>vacancies.</em></h2>
+    <div class="ax-line"></div>
+    <p style="font-size:14px;font-weight:300;line-height:1.95;color:#444;max-width:480px;">AX Recruiter Ltd was founded with a straightforward belief — recruitment should feel less transactional and more human. We work across engineering, construction and manufacturing, placing professionals who don't just fit the job description, but genuinely fit the team.</p>
+    <p style="font-size:14px;font-weight:300;line-height:1.95;color:#444;max-width:480px;margin-top:18px;">Whether you're a CNC Miller with decades of experience, a Quantity Surveyor navigating your next move, or a business looking to build something extraordinary — we're here to make the right introduction. No noise, no fuss. Just results.</p>
+    <div class="ax-stats">
+      <div class="ax-stat"><div class="ax-stat-n">5+</div><div class="ax-stat-l">Specialist Sectors</div></div>
+      <div class="ax-stat"><div class="ax-stat-n">UK</div><div class="ax-stat-l">Nationwide Coverage</div></div>
+      <div class="ax-stat"><div class="ax-stat-n">24h</div><div class="ax-stat-l">Response Time</div></div>
+      <div class="ax-stat"><div class="ax-stat-n">100%</div><div class="ax-stat-l">Dedicated Service</div></div>
+    </div>
+  </div>
+  <div class="ax-about-img">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80" alt="Engineering professional"/>
+  </div>
+</section>
+
+<!-- JOBS -->
+<section id="ax-jobs" class="ax-jobs ax-sec">
+  <div class="ax-jobs-hdr">
+    <div>
+      <span class="ax-label">Live Opportunities</span>
+      <h2 class="ax-title">Current <em>Vacancies</em></h2>
+    </div>
+    <div class="ax-filters">
+      <button class="ax-fbtn on" onclick="axF('all',this)">All</button>
+      <button class="ax-fbtn" onclick="axF('engineering',this)">Engineering</button>
+      <button class="ax-fbtn" onclick="axF('construction',this)">Construction</button>
+      <button class="ax-fbtn" onclick="axF('manufacturing',this)">Manufacturing</button>
+    </div>
+  </div>
+  <div class="ax-grid" id="axGrid">
+
+    <div class="ax-card" data-s="manufacturing">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=600&q=80" alt="CNC Miller"/>
+      <span class="ax-tag p">Permanent</span>
+      <div class="ax-card-title">CNC Miller</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Coventry, West Midlands</strong></span>
+        <span>🕐 Full Time · Days</span>
+        <span>🏭 Aerospace Manufacturing</span>
+      </div>
+      <div class="ax-salary">£32,000 – £38,000 p/a</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="construction">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Quantity Surveyor"/>
+      <span class="ax-tag">Contract</span>
+      <div class="ax-card-title">Quantity Surveyor</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Manchester, Greater Manchester</strong></span>
+        <span>🕐 Full Time</span>
+        <span>🏗️ Commercial Construction</span>
+      </div>
+      <div class="ax-salary">£55,000 – £65,000 p/a</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="construction">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80" alt="Project Manager"/>
+      <span class="ax-tag p">Permanent</span>
+      <div class="ax-card-title">Project Manager</div>
+      <div class="ax-meta">
+        <span>📍 <strong>London, SE1</strong></span>
+        <span>🕐 Full Time</span>
+        <span>🏗️ Civil Engineering</span>
+      </div>
+      <div class="ax-salary">£65,000 – £80,000 p/a</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="engineering">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Electrical Engineer"/>
+      <span class="ax-tag p">Permanent</span>
+      <div class="ax-card-title">Electrical Engineer</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Birmingham, West Midlands</strong></span>
+        <span>🕐 Full Time · Shifts</span>
+        <span>⚡ Industrial Automation</span>
+      </div>
+      <div class="ax-salary">£40,000 – £48,000 p/a</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="manufacturing">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="Welder"/>
+      <span class="ax-tag">Contract</span>
+      <div class="ax-card-title">Welder – MIG/TIG</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Sheffield, South Yorkshire</strong></span>
+        <span>🕐 Full Time · Days &amp; Afters</span>
+        <span>🔧 Structural Fabrication</span>
+      </div>
+      <div class="ax-salary">£18 – £22 per hour</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="manufacturing">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="CNC 5 Axis"/>
+      <span class="ax-tag p">Permanent</span>
+      <div class="ax-card-title">CNC Miller – 5 Axis</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Derby, Derbyshire</strong></span>
+        <span>🕐 Full Time · Days</span>
+        <span>🏭 Precision Engineering</span>
+      </div>
+      <div class="ax-salary">£34,000 – £42,000 p/a</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="construction">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1590579491624-f98f36d4c763?w=600&q=80" alt="Senior QS"/>
+      <span class="ax-tag">Contract</span>
+      <div class="ax-card-title">Senior Quantity Surveyor</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Leeds, West Yorkshire</strong></span>
+        <span>🕐 Full Time</span>
+        <span>🏗️ Residential Development</span>
+      </div>
+      <div class="ax-salary">£65,000 – £75,000 p/a</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="engineering">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Project Manager Bristol"/>
+      <span class="ax-tag p">Permanent</span>
+      <div class="ax-card-title">Project Manager</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Bristol, Avon</strong></span>
+        <span>🕐 Full Time</span>
+        <span>⚡ Energy &amp; Utilities</span>
+      </div>
+      <div class="ax-salary">£55,000 – £70,000 p/a</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+    <div class="ax-card" data-s="manufacturing">
+      <img class="ax-card-img" src="https://images.unsplash.com/photo-1567789884554-0b844b597180?w=600&q=80" alt="Coded Welder"/>
+      <span class="ax-tag">Contract</span>
+      <div class="ax-card-title">Coded Welder</div>
+      <div class="ax-meta">
+        <span>📍 <strong>Wolverhampton, West Midlands</strong></span>
+        <span>🕐 Full Time</span>
+        <span>🔧 Oil &amp; Gas Pipework</span>
+      </div>
+      <div class="ax-salary">£22 – £28 per hour</div>
+      <a href="#ax-candidate" class="ax-apply">Apply Now →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPLIT PANEL -->
+<div id="ax-register" class="ax-split">
+  <div class="ax-panel dk">
+    <span class="ax-label" style="color:rgba(255,255,255,0.35);">For Employers</span>
+    <h2 class="ax-title">Looking for<br><em>Staff?</em></h2>
+    <div class="ax-line" style="background:rgba(255,255,255,0.2);"></div>
+    <p>Tell us what you need and we'll do the rest. We source, screen and shortlist — so you only spend time with candidates worth meeting. Fast, discreet, and built around your business.</p>
+    <a href="#ax-contact" class="ax-btn-wht">Post a Vacancy</a>
+  </div>
+  <div class="ax-panel lt">
+    <span class="ax-label">For Candidates</span>
+    <h2 class="ax-title">Ready for your<br><em>next move?</em></h2>
+    <div class="ax-line"></div>
+    <p>Register with AX and let us work on your behalf. We'll match your skills and ambitions with the right employers — and keep you informed every step of the way.</p>
+    <a href="#ax-candidate" class="ax-btn-blk">Submit Your CV</a>
+  </div>
+</div>
+
+<!-- CANDIDATE FORM -->
+<section id="ax-candidate" class="ax-form-sec ax-sec">
+  <span class="ax-label">Candidate Registration</span>
+  <h2 class="ax-title">Submit your<br><em>CV &amp; Details</em></h2>
+  <div class="ax-line"></div>
+  <p class="ax-intro">Fill in your details below and attach your CV. One of the team will be in touch within 24 hours to discuss suitable opportunities.</p>
+  <form class="ax-form" onsubmit="return false;">
+    <div class="ax-fg"><label>First Name</label><input type="text" placeholder="John"/></div>
+    <div class="ax-fg"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+    <div class="ax-fg"><label>Email Address</label><input type="email" placeholder="john.smith@email.com"/></div>
+    <div class="ax-fg"><label>Phone Number</label><input type="tel" placeholder="07700 000000"/></div>
+    <div class="ax-fg"><label>Current Location</label><input type="text" placeholder="City, County"/></div>
+    <div class="ax-fg"><label>Job Title / Trade</label><input type="text" placeholder="e.g. CNC Miller, Project Manager"/></div>
+    <div class="ax-fg">
+      <label>Sector</label>
+      <select><option value="">Select sector…</option><option>Engineering</option><option>Construction</option><option>Manufacturing</option><option>Other</option></select>
+    </div>
+    <div class="ax-fg">
+      <label>Years Experience</label>
+      <select><option>0–2 years</option><option>3–5 years</option><option>5–10 years</option><option>10+ years</option></select>
+    </div>
+    <div class="ax-fg full"><label>Brief Summary</label><textarea placeholder="Tell us about your experience, key skills, and what you're looking for…"></textarea></div>
+    <div class="ax-fg full"><label>Attach CV</label><input type="file" accept=".pdf,.doc,.docx"/></div>
+    <div class="full" style="margin-top:8px;">
+      <button type="submit" class="ax-btn-blk">Submit Registration</button>
+    </div>
+  </form>
+</section>
+
+<!-- CONTACT -->
+<section id="ax-contact" class="ax-contact-sec ax-sec">
+  <div>
+    <span class="ax-label">Get In Touch</span>
+    <h2 class="ax-title">Let's talk<br><em>talent.</em></h2>
+    <div class="ax-line" style="background:rgba(255,255,255,0.2);"></div>
+    <p class="ax-intro">Whether you're hiring or looking for your next role, we're here. Reach out and we'll get back to you within one working day.</p>
+    <div>
+      <div class="ax-ci">
+        <span class="ax-ci-lbl">Phone</span>
+        <div class="ax-ci-val"><a href="tel:07361560375">07361 560375</a></div>
+      </div>
+      <div class="ax-ci">
+        <span class="ax-ci-lbl">Email</span>
+        <div class="ax-ci-val">info&#64;axrecruiter.com</div>
+      </div>
+      <div class="ax-ci">
+        <span class="ax-ci-lbl">Website</span>
+        <div class="ax-ci-val"><a href="https://axrecruiter.com">axrecruiter.com</a></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="ax-cf-hdr">Send a Message</p>
+    <form class="ax-cf" onsubmit="return false;">
+      <input type="text" placeholder="Your Name"/>
+      <input type="email" placeholder="Your Email"/>
+      <input type="text" placeholder="Subject"/>
+      <textarea placeholder="Your message…"></textarea>
+      <button type="submit" class="ax-btn-wht">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ax-footer">
+  <div class="ax-footer-brand">AX RECRUITMENT</div>
+  <div class="ax-footer-legal">
+    AX Recruiter Ltd &nbsp;·&nbsp; Company No. 16136869 &nbsp;·&nbsp; Registered in England &amp; Wales<br/>
+    &copy; 2025 AX Recruiter Ltd. All rights reserved.
+  </div>
+  <div class="ax-footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+    <a href="#ax-contact">Contact</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+function axF(s,btn){
+  document.querySelectorAll('.ax-fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.ax-card').forEach(c=>{
+    c.style.display=(s==='all'||c.dataset.s===s)?'flex':'none';
+  });
+}
+</script>
